@@ -1,0 +1,23 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: #D1D4D7;
+}
+
+form
+{
+    font-size: 25px;
+    position: absolute;
+    text-align:center;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Jersey 10", sans-serif;
+    color: #586366;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid white;
+}
