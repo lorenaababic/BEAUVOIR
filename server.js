@@ -1,36 +1,31 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const sql = require('mssql');
 
-const app = express();
-const port = 3000;
-
-app.use(bodyParser.json());
-app.use(express.static('PRA')); // Folder s HTML, CSS, JS datotekama
-
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'SQL.12345',
-    database: 'Beauvoir'
-});
-
-db.connect((err) => {
-    if (err) {
-        throw err;
+const config = {
+    user: 'SA',
+    password: 'SQL.123456',
+    server: 'localhost', // Može biti 'localhost\\instance' ili samo 'localhost'
+    database: 'Beauvoir',
+    options: {
+        encrypt: true, // koristi enkripciju ukoliko je neophodno
+        trustServerCertificate: true // koristi ovo ukoliko koristite self-signed sertifikate
     }
-    console.log('MySQL Connected...');
-});
+};
 
-app.post('/submit', (req, res) => {
-    let data = { name: req.body.name, email: req.body.email };
-    let sql = 'INSERT INTO users SET ?';
-    db.query(sql, data, (err, result) => {
-        if (err) throw err;
-        res.send('Data added to database');
-    });
-});
+async function connectToDatabase() {
+    try {
+        // Povezivanje na bazu
+        let pool = await sql.connect(config);
+        console.log("Connected to the database!");
 
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
+        // Primer jednostavnog upita
+        let result = await pool.request().query('SELECT * FROM korisnici');
+        console.log(result);
+
+        // Zatvaranje konekcije
+        sql.close();
+    } catch (err) {
+        console.error('Database connection failed:', err);
+    }
+}
+
+connectToDatabase();
