@@ -1,0 +1,8 @@
+Model Information:
+* title:	Snake Dragon
+* source:	https://sketchfab.com/3d-models/snake-dragon-0c2945e5c63a457cb9e246ba33f78424
+* author:	Shaina (Regan) Alvarez (https://sketchfab.com/regan.alv)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
