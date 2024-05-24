@@ -1,0 +1,8 @@
+Model Information:
+* title:	cool COMPUTER
+* source:	https://sketchfab.com/3d-models/cool-computer-b447b369aae34460b6473692c661be34
+* author:	BLENDER NARD (https://sketchfab.com/1003224735)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
