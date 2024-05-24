@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 function init(containerId, modelPath)
 {
 
-    const container = document.getElementById(containerId); // Selecting the container for the first model post
+    const container = document.getElementById(containerId); 
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -76,14 +76,10 @@ function init(containerId, modelPath)
     animate();
     onResize();
     
-    // Add mouse movement functionality to the first model post
-
-
-    
 }
 
-init('container3D-1', '/public/porsche_911_carrera/');
+init('container3D-1', '/public/free_porsche_911_carrera_4s/');
 init('container3D-2', '/public/ferrari_f1_2019/');
 init('container3D-3', '/public/snake_dragon/')
-init('container3D-4', '/public/ufo_flying_saucer_spaceship_ovni/')
+init('container3D-4', '/public/cool_computer/')
 init('container3D-5', '/public/la_night_city/')
