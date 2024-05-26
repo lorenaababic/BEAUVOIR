@@ -2,6 +2,66 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+// Dodajte slušatelja događaja na gumb "Choose File" koji će pokrenuti odabir datoteke
+document.getElementById('choose-file-button').addEventListener('click', () => {
+    document.getElementById('model-file').click();
+});
+
+// Dodajte slušatelja događaja na input element koji reagira kada se odabere datoteka
+document.getElementById('model-file').addEventListener('change', async (event) => {
+    const file = event.target.files[0]; // Dohvati odabranu datoteku
+
+    if (file) {
+        // Učitaj datoteku i prikaži model na stranici
+        const modelPost = await uploadAndDisplayModel(file);
+        document.getElementById('models-gallery').appendChild(modelPost);
+    }
+});
+
+// Funkcija za učitavanje datoteke i prikazivanje modela
+async function uploadAndDisplayModel(file) {
+    const formData = new FormData();
+    formData.append('name', 'Custom Model'); // Pretpostavimo naziv modela
+    formData.append('description', 'Custom Model Description'); // Pretpostavimo opis modela
+    formData.append('file', file);
+
+    try {
+        const response = await fetch('/upload-model', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const modelData = await response.json(); // Pretpostavimo da server vraća podatke o novom modelu
+            return createModelPost(modelData); // Kreiraj HTML element za prikaz novog modela
+        } else {
+            console.error('Error uploading model:', response.statusText);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error uploading model:', error);
+        return null;
+    }
+}
+
+// Funkcija za stvaranje HTML elementa koji prikazuje model post
+function createModelPost(modelData) {
+    const modelPost = document.createElement('div');
+    modelPost.classList.add('post');
+
+    const modelContainer = document.createElement('div');
+    modelContainer.classList.add('model-container');
+    modelContainer.innerHTML = '<img src="' + modelData.thumbnailUrl + '" alt="' + modelData.name + '">'; // Pretpostavimo da server vraća URL sličice modela
+    modelPost.appendChild(modelContainer);
+
+    const postContent = document.createElement('div');
+    postContent.classList.add('post-content');
+    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>'; // Pretpostavimo da server vraća naziv i opis modela
+    modelPost.appendChild(postContent);
+
+    return modelPost;
+}
+
 function init(containerId, modelPath)
 {
 
@@ -77,13 +137,10 @@ function init(containerId, modelPath)
     onResize();
     
     // Add mouse movement functionality to the first model post
-
-
-    
 }
 
 init('container3D-1', '/public/porsche_911_carrera/');
 init('container3D-2', '/public/ferrari_f1_2019/');
-init('container3D-3', '/public/snake_dragon/')
-init('container3D-4', '/public/ufo_flying_saucer_spaceship_ovni/')
-init('container3D-5', '/public/la_night_city/')
+init('container3D-3', '/public/snake_dragon/');
+init('container3D-4', '/public/ufo_flying_saucer_spaceship_ovni/');
+init('container3D-5', '/public/la_night_city/');
