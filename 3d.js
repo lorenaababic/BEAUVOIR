@@ -2,27 +2,25 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// Dodajte slušatelja događaja na gumb "Upload Model" koji će pokrenuti odabir datoteke
+
 document.getElementById('choose-file-button').addEventListener('click', () => {
     document.getElementById('model-file').click();
 });
 
-// Dodajte slušatelja događaja na input element koji reagira kada se odabere datoteka
+
 document.getElementById('model-file').addEventListener('change', async (event) => {
-    const file = event.target.files[0]; // Dohvati odabranu datoteku
+    const file = event.target.files[0]; 
 
     if (file) {
-        // Učitaj datoteku i prikaži model na stranici
         const modelPost = await uploadAndDisplayModel(file);
         document.getElementById('models-gallery').appendChild(modelPost);
     }
 });
 
-// Funkcija za učitavanje datoteke i prikazivanje modela
 async function uploadAndDisplayModel(file) {
     const formData = new FormData();
-    formData.append('name', 'Custom Model'); // Pretpostavimo naziv modela
-    formData.append('description', 'Custom Model Description'); // Pretpostavimo opis modela
+    formData.append('name', 'Custom Model');
+    formData.append('description', 'Custom Model Description'); 
     formData.append('file', file);
 
     try {
@@ -32,8 +30,8 @@ async function uploadAndDisplayModel(file) {
         });
 
         if (response.ok) {
-            const modelData = await response.json(); // Pretpostavimo da server vraća podatke o novom modelu
-            return createModelPost(modelData); // Kreiraj HTML element za prikaz novog modela
+            const modelData = await response.json(); 
+            return createModelPost(modelData); 
         } else {
             console.error('Error uploading model:', response.statusText);
             return null;
@@ -44,26 +42,25 @@ async function uploadAndDisplayModel(file) {
     }
 }
 
-// Funkcija za stvaranje HTML elementa koji prikazuje model post
 function createModelPost(modelData) {
     const modelPost = document.createElement('div');
     modelPost.classList.add('post');
 
     const modelContainer = document.createElement('div');
     modelContainer.classList.add('model-container');
-    modelContainer.innerHTML = '<img src="' + modelData.thumbnailUrl + '" alt="' + modelData.name + '">'; // Pretpostavimo da server vraća URL sličice modela
+    modelContainer.innerHTML = '<img src="' + modelData.thumbnailUrl + '" alt="' + modelData.name + '">';
     modelPost.appendChild(modelContainer);
 
     const postContent = document.createElement('div');
     postContent.classList.add('post-content');
-    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>'; // Pretpostavimo da server vraća naziv i opis modela
+    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>'; 
     modelPost.appendChild(postContent);
 
     return modelPost;
 }
 
 function init(containerId, modelPath) {
-    const container = document.getElementById(containerId); // Selecting the container for the first model post
+    const container = document.getElementById(containerId); 
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
