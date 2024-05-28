@@ -20,6 +20,17 @@ document.getElementById('profile-picture-input').addEventListener('change', func
 
 // Provjera prilikom učitavanja stranice da li postoji spremljena slika profila
 window.addEventListener('DOMContentLoaded', function() {
+    const username = localStorage.getItem('loggedInUser');
+    const firstName = localStorage.getItem('firstName'); // Promijenjeno - dohvaćanje imena iz localStorage-a
+    const lastName = localStorage.getItem('lastName'); // Promijenjeno - dohvaćanje prezimena iz localStorage-a
+
+    if (username) {
+        document.getElementById('username').textContent = username;
+        document.getElementById('full-name').textContent = `${firstName} ${lastName}`; // Promijenjeno - prikaz punog imena i prezimena
+    } else {
+        document.getElementById('username').textContent = 'Guest';
+    }
+
     const savedProfilePicture = localStorage.getItem('profilePicture');
     if (savedProfilePicture) {
         document.getElementById('profile-pic').src = savedProfilePicture;

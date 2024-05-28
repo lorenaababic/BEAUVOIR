@@ -13,9 +13,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
         if (validUser) {
             localStorage.setItem('loggedInUser', username);
+            localStorage.setItem('firstName', validUser.firstName); // Dodano - postavljanje imena u localStorage
+            localStorage.setItem('lastName', validUser.lastName); // Dodano - postavljanje prezimena u localStorage
 
             window.location.href = '3d.html';
-        }else {
+        } else {
             alert('Neispravno korisničko ime ili lozinka');
         }
     } else {

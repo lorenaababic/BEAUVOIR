@@ -26,7 +26,7 @@
         </div>
         <div id="profile">
             <img src="profile-pic.jpg" alt="Profile Picture" id="profile-pic">
-            <h2 id="username">Username</h2>
+            <h2 id="username" class="username-hover">Username</h2>
             <!-- <p id="user-bio">User bio goes here.</p> -->
         </div>
     </header>
@@ -101,5 +101,17 @@
         </div>
     </main>
     <script type="module" src="3d.js"></script>
+    <script>
+        // Dohvati prijavljenog korisnika iz localStorage
+        const loggedInUser = localStorage.getItem('loggedInUser');
+
+        // Ako je korisnik prijavljen, prikaži njegovo korisničko ime
+        if (loggedInUser) {
+            document.getElementById('username').textContent = loggedInUser;
+        } else {
+            // Ako korisnik nije prijavljen, prikaži "Guest" ili neku drugu poruku
+            document.getElementById('username').textContent = 'Guest';
+        }
+    </script>
 </body>
 </html>
