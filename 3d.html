@@ -34,14 +34,12 @@
     </header>
     
     <main>
+        <form id="upload-form">
+            <input type="file" id="model-file" accept=".gltf, .glb" style="display: none;">
+            <button type="button" id="choose-file-button">Upload Model</button>
+        </form>
+        <br>
         <div id="models-gallery">
-            <form id="upload-form">
-                <input type="text" id="model-name" placeholder="Model Name">
-                <input type="text" id="model-description" placeholder="Model Description">
-                <input type="file" id="model-file" accept=".gltf, .glb" style="display: none;">
-                <button type="button" id="choose-file-button">Upload Model</button>
-            </form>
-
             <div class="post" id="post1">
                 <div class="model-container" id="container3D-1"></div>
                 <div class="post-content">

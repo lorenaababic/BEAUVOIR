@@ -1,85 +1,107 @@
 body {
-    font-family:  "Jersey 10", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    position: relative;
-  }
-  
-  #search-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  #search-input {
-    padding: 0.5em;
-    font-size: 1em;
-  }
-  
-  #search-button {
-    padding: 0.5em;
-    margin-left: 0.5em;
-    font-size: 1em;
-    cursor: pointer;
-  }
-  
-  #profile {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    text-align: right;
-  }
-  
-  #profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  
-  #models-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .post {
-    width: calc(33.33% - 20px); /* 33.33% širina za tri posta po redu */
-    margin: 10px;
-    box-sizing: border-box;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  
-  .model-container {
-    width: 100%;
-    height: 200px;
-    margin: 0 auto;
-    background-color: #f4f4f4;
-  }
-  
-  .post-content {
-    margin-top: 20px;
-    font-size: 20px;
-  }
-  
-  .post h3 {
-    margin: 10px 0;
-  }
-  
-  .post p {
-    color: #666;
-  }
+  font-family:  "Jersey 10", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 16px; /* 1em prebaceno u px */
+  position: relative;
+}
+
+header h1 {
+  font-size: 65px; /* Povećava veličinu fonta za naslov, 3em prebaceno u px */
+  margin: 0;
+}
+
+#search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#search-input {
+  padding: 4px; /* 0.5em prebaceno u px */
+  font-size: 11px; 
+  width: 120px ;
+}
+
+#search-button {
+  padding: 4px; /* 0.5em prebaceno u px */
+  margin-left: 4px; /* 0.5em prebaceno u px */
+  font-size: 10px; /* 1em prebaceno u px */
+  cursor: pointer;
+}
+
+#profile {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: right;
+}
+
+#profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+#upload-form {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#models-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  /*justify-content: center;*/
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.post {
+  width:30%; /*calc(33.33% - 20px);*//* 33.33% širina za tri posta po redu */
+  margin: 10px;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.model-container {
+  width: 100%;
+  height: 200px;
+  margin-left: 0px;
+ /* margin: 0 auto;*/
+  background-color: #f4f4f4;
+}
+
+.post-content {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.post h3 {
+  margin: 10px 0;
+}
+
+.post p {
+  color: #666;
+}
