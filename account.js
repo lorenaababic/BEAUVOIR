@@ -1,3 +1,25 @@
+window.addEventListener('DOMContentLoaded', function() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
+    if (loggedInUser) {
+        const usersData = JSON.parse(localStorage.getItem('usersData')) || [];
+        const user = usersData.find(user => user.username === loggedInUser);
+
+        if (user) {
+            document.getElementById('username').textContent = user.username; // Koristi samo korisničko ime
+            document.getElementById('full-name').textContent = `${user.firstName} ${user.lastName}`;
+        }
+
+        // Provjeri postoji li spremljena slika za ovog korisnika
+        const savedProfilePicture = localStorage.getItem(`profilePicture_${loggedInUser}`);
+        if (savedProfilePicture) {
+            document.getElementById('profile-pic').src = savedProfilePicture;
+        }
+    } else {
+        document.getElementById('username').textContent = 'Guest';
+    }
+});
+
 document.getElementById('change-profile-btn').addEventListener('click', function() {
     document.getElementById('profile-picture-input').click();
 });
@@ -10,30 +32,12 @@ document.getElementById('profile-picture-input').addEventListener('change', func
         reader.onload = function() {
             const imageDataUrl = reader.result;
             document.getElementById('profile-pic').src = imageDataUrl;
-            localStorage.setItem('profilePicture', imageDataUrl);
-            // Ovdje možete dodati logiku za spremanje slike na server
+
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            localStorage.setItem(`profilePicture_${loggedInUser}`, imageDataUrl);
         };
 
         reader.readAsDataURL(file);
-    }
-});
-
-// Provjera prilikom učitavanja stranice da li postoji spremljena slika profila
-window.addEventListener('DOMContentLoaded', function() {
-    const username = localStorage.getItem('loggedInUser');
-    const firstName = localStorage.getItem('firstName'); // Promijenjeno - dohvaćanje imena iz localStorage-a
-    const lastName = localStorage.getItem('lastName'); // Promijenjeno - dohvaćanje prezimena iz localStorage-a
-
-    if (username) {
-        document.getElementById('username').textContent = username;
-        document.getElementById('full-name').textContent = `${firstName} ${lastName}`; // Promijenjeno - prikaz punog imena i prezimena
-    } else {
-        document.getElementById('username').textContent = 'Guest';
-    }
-
-    const savedProfilePicture = localStorage.getItem('profilePicture');
-    if (savedProfilePicture) {
-        document.getElementById('profile-pic').src = savedProfilePicture;
     }
 });
 

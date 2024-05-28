@@ -27,11 +27,10 @@
         <div id="profile">
             <img src="profile-pic.jpg" alt="Profile Picture" id="profile-pic">
             <h2 id="username" class="username-hover">Username</h2>
-            <!-- <p id="user-bio">User bio goes here.</p> -->
         </div>
     </header>
     <main>
-        <!-- Your existing main content -->
+        <!-- content od maina-->
         <form id="upload-form">
             <input type="file" id="model-file" accept=".gltf, .glb" style="display: none;">
             <button type="button" id="choose-file-button">Upload Model</button>
@@ -102,15 +101,21 @@
     </main>
     <script type="module" src="3d.js"></script>
     <script>
-        // Dohvati prijavljenog korisnika iz localStorage
         const loggedInUser = localStorage.getItem('loggedInUser');
 
-        // Ako je korisnik prijavljen, prikaži njegovo korisničko ime
         if (loggedInUser) {
             document.getElementById('username').textContent = loggedInUser;
+
+            // Provjeri postoji li spremljena slika za ovog korisnika
+            const savedProfilePicture = localStorage.getItem(`profilePicture_${loggedInUser}`);
+            if (savedProfilePicture) {
+                document.getElementById('profile-pic').src = savedProfilePicture;
+            } else {
+                document.getElementById('profile-pic').src = 'default-profile-pic.jpg'; // Default slika
+            }
         } else {
-            // Ako korisnik nije prijavljen, prikaži "Guest" ili neku drugu poruku
             document.getElementById('username').textContent = 'Guest';
+            document.getElementById('profile-pic').src = 'default-profile-pic.jpg'; // Default slika
         }
     </script>
 </body>
