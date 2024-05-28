@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Jersey+10&family=Jersey+20+Charted&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+    <header>
+        <h1>Profile</h1>
+    </header>
+    <main>
+        <div id="profile-info">
+            <img src="profile-pic.jpg" alt="Profile Picture" id="profile-pic">
+            <h2 id="full-name">Full Name</h2>
+            <p id="username">Username</p>
+            <button id="change-profile-btn">Change Profile Picture</button>
+            <input type="file" id="profile-picture-input" style="display: none;" accept="image/*">
+        </div>
+        <div id="model-viewer">
+            <!-- Ovdje dodajte 3D viewer za prikaz 3D modela -->
+        </div>
+        <div id="model-history">
+            <h2>Model History</h2>
+            <!-- Ovdje dodajte povijest preuzetih 3D modela -->
+        </div>
+    </main>
+    <footer>
+        <a href="3d.html" id="back-to-3d-viewer">Back to 3D Viewer</a>
+    </footer>
+    <script src="account.js"></script>
+</body>
+</html>

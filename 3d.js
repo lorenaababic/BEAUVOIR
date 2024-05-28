@@ -2,14 +2,12 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-
 document.getElementById('choose-file-button').addEventListener('click', () => {
     document.getElementById('model-file').click();
 });
 
-
 document.getElementById('model-file').addEventListener('change', async (event) => {
-    const file = event.target.files[0]; 
+    const file = event.target.files[0];
 
     if (file) {
         const modelPost = await uploadAndDisplayModel(file);
@@ -20,7 +18,7 @@ document.getElementById('model-file').addEventListener('change', async (event) =
 async function uploadAndDisplayModel(file) {
     const formData = new FormData();
     formData.append('name', 'Custom Model');
-    formData.append('description', 'Custom Model Description'); 
+    formData.append('description', 'Custom Model Description');
     formData.append('file', file);
 
     try {
@@ -30,8 +28,8 @@ async function uploadAndDisplayModel(file) {
         });
 
         if (response.ok) {
-            const modelData = await response.json(); 
-            return createModelPost(modelData); 
+            const modelData = await response.json();
+            return createModelPost(modelData);
         } else {
             console.error('Error uploading model:', response.statusText);
             return null;
@@ -53,14 +51,14 @@ function createModelPost(modelData) {
 
     const postContent = document.createElement('div');
     postContent.classList.add('post-content');
-    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>'; 
+    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>';
     modelPost.appendChild(postContent);
 
     return modelPost;
 }
 
 function init(containerId, modelPath) {
-    const container = document.getElementById(containerId); 
+    const container = document.getElementById(containerId);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -129,6 +127,47 @@ function init(containerId, modelPath) {
 
     animate();
     onResize();
+}
+
+document.getElementById('username').addEventListener('click', function() {
+    window.location.href = 'account.html';
+});
+
+document.addEventListener('DOMContentLoaded', async function() {
+    const username = localStorage.getItem('loggedInUser');
+    if (username) {
+        document.getElementById('username').textContent = username;
+    } else {
+        document.getElementById('username').textContent = 'Guest';
+    }
+
+    const savedProfilePicture = localStorage.getItem('profilePicture');
+    if (savedProfilePicture) {
+        document.getElementById('profile-pic').src = savedProfilePicture;
+    }
+
+    // Učitaj i prikaži modele samo ako je korisnik prijavljen
+    if (username) {
+        await loadAndDisplayModels();
+    }
+});
+
+async function loadAndDisplayModels() {
+    try {
+        const response = await fetch('/fetch-models');
+        if (!response.ok) {
+            console.error('Error fetching models:', response.statusText);
+            return;
+        }
+
+        const models = await response.json();
+        models.forEach(modelData => {
+            const modelPost = createModelPost(modelData);
+            document.getElementById('models-gallery').appendChild(modelPost);
+        });
+    } catch (error) {
+        console.error('Error fetching models:', error);
+    }
 }
 
 init('container3D-1', '/public/free_porsche_911_carrera_4s/');

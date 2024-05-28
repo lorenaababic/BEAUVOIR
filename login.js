@@ -12,6 +12,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         });
 
         if (validUser) {
+            localStorage.setItem('loggedInUser', username);
+
             window.location.href = '3d.html';
         }else {
             alert('Neispravno korisničko ime ili lozinka');

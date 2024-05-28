@@ -1,5 +1,5 @@
 body {
-  font-family:  "Jersey 10", sans-serif;
+  font-family: "Jersey 10", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -11,12 +11,12 @@ header {
   align-items: center;
   background-color: #333;
   color: #fff;
-  padding: 16px; /* 1em prebaceno u px */
+  padding: 16px;
   position: relative;
 }
 
 header h1 {
-  font-size: 65px; /* Povećava veličinu fonta za naslov, 3em prebaceno u px */
+  font-size: 65px;
   margin: 0;
 }
 
@@ -28,15 +28,15 @@ header h1 {
 }
 
 #search-input {
-  padding: 4px; /* 0.5em prebaceno u px */
-  font-size: 11px; 
-  width: 120px ;
+  padding: 4px;
+  font-size: 11px;
+  width: 120px;
 }
 
 #search-button {
-  padding: 4px; /* 0.5em prebaceno u px */
-  margin-left: 4px; /* 0.5em prebaceno u px */
-  font-size: 10px; /* 1em prebaceno u px */
+  padding: 4px;
+  margin-left: 4px;
+  font-size: 10px;
   cursor: pointer;
 }
 
@@ -44,14 +44,21 @@ header h1 {
   position: absolute;
   top: 10px;
   right: 10px;
-  text-align: right;
+  text-align: center; /* Promijenjeno iz 'right' u 'center' */
 }
 
 #profile-pic {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 1px; /* Smanjen razmak */
+}
+
+#username {
+  font-size: 18px; /* Smanjena veličina fonta */
+  color: #fff; /* Dodana boja fonta za bolju vidljivost */
+  margin-top: 1px;
 }
 
 main {
@@ -70,13 +77,12 @@ main {
 #models-gallery {
   display: flex;
   flex-wrap: wrap;
-  /*justify-content: center;*/
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
 }
 
 .post {
-  width:30%; /*calc(33.33% - 20px);*//* 33.33% širina za tri posta po redu */
+  width: 30%;
   margin: 10px;
   box-sizing: border-box;
   padding: 20px;
@@ -88,8 +94,6 @@ main {
 .model-container {
   width: 100%;
   height: 200px;
-  margin-left: 0px;
- /* margin: 0 auto;*/
   background-color: #f4f4f4;
 }
 
