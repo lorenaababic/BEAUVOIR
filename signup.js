@@ -20,16 +20,15 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
                 firstName: firstName,
                 lastName: lastName,
                 username: username,
-                password: password
+                password: password,
+                profilePicture: ''  // Početno prazan profilni avatar
             };
 
             storedUsers.push(userData);
 
             localStorage.setItem('usersData', JSON.stringify(storedUsers));
-            localStorage.setItem('loggedInUser', username); // Dodano - postavljanje prijavljenog korisnika u localStorage
-            localStorage.setItem('firstName', firstName); // Dodano - postavljanje imena u localStorage
-            localStorage.setItem('lastName', lastName); // Dodano - postavljanje prezimena u localStorage
-
+            localStorage.setItem('loggedInUser', username); 
+            localStorage.setItem('profilePicture', '');
             window.location.href = '3d.html';
         }
     } else {

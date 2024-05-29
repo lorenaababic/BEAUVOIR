@@ -25,7 +25,7 @@
             <button id="search-button">Search</button>
         </div>
         <div id="profile">
-            <img src="profile-pic.jpg" alt="Profile Picture" id="profile-pic">
+            <img src="" alt="Profile Picture" id="profile-pic">
             <h2 id="username" class="username-hover">Username</h2>
         </div>
     </header>
@@ -101,21 +101,18 @@
     </main>
     <script type="module" src="3d.js"></script>
     <script>
-        const loggedInUser = localStorage.getItem('loggedInUser');
-
-        if (loggedInUser) {
-            document.getElementById('username').textContent = loggedInUser;
-
-            // Provjeri postoji li spremljena slika za ovog korisnika
-            const savedProfilePicture = localStorage.getItem(`profilePicture_${loggedInUser}`);
-            if (savedProfilePicture) {
-                document.getElementById('profile-pic').src = savedProfilePicture;
-            } else {
-                document.getElementById('profile-pic').src = 'default-profile-pic.jpg'; // Default slika
+        const loggedInUsername = localStorage.getItem('loggedInUser');
+        if (loggedInUsername) {
+            const usersData = JSON.parse(localStorage.getItem('usersData')) || [];
+            const user = usersData.find(user => user.username === loggedInUsername);
+            if (user) {
+                document.getElementById('username').textContent = user.username;
+                if (user.profilePicture) {
+                    document.getElementById('profile-pic').src = user.profilePicture;
+                }
             }
         } else {
             document.getElementById('username').textContent = 'Guest';
-            document.getElementById('profile-pic').src = 'default-profile-pic.jpg'; // Default slika
         }
     </script>
 </body>

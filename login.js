@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         });
 
         if (validUser) {
-            localStorage.setItem('loggedInUser', username); // Spremi samo korisničko ime
+            localStorage.setItem('loggedInUser', username); 
             window.location.href = '3d.html';
         } else {
             alert('Neispravno korisničko ime ili lozinka');

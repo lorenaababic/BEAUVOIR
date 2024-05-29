@@ -137,16 +137,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     const username = localStorage.getItem('loggedInUser');
     if (username) {
         document.getElementById('username').textContent = username;
+        const profilePicture = localStorage.getItem(`profilePicture_${username}`);
+        if (profilePicture) {
+            document.getElementById('profile-pic').src = profilePicture;
+        }
     } else {
         document.getElementById('username').textContent = 'Guest';
     }
 
-    const savedProfilePicture = localStorage.getItem('profilePicture');
-    if (savedProfilePicture) {
-        document.getElementById('profile-pic').src = savedProfilePicture;
-    }
-
-    // Učitaj i prikaži modele samo ako je korisnik prijavljen
     if (username) {
         await loadAndDisplayModels();
     }
