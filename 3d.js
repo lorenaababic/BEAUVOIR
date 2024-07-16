@@ -13,6 +13,7 @@ document.getElementById('model-file').addEventListener('change', async (event) =
         const modelPost = await uploadAndDisplayModel(file);
         document.getElementById('models-gallery').appendChild(modelPost);
     }
+    
 });
 
 async function uploadAndDisplayModel(file) {
