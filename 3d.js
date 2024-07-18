@@ -6,6 +6,7 @@ document.getElementById('choose-file-button').addEventListener('click', () => {
     document.getElementById('model-file').click();
 });
 
+
 document.getElementById('model-file').addEventListener('change', async (event) => {
     const file = event.target.files[0];
 
@@ -60,6 +61,9 @@ function createModelPost(modelData) {
 
 function init(containerId, modelPath) {
     const container = document.getElementById(containerId);
+=======
+    const container = document.getElementById(containerId); 
+
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -128,6 +132,7 @@ function init(containerId, modelPath) {
 
     animate();
     onResize();
+
 }
 
 document.getElementById('username').addEventListener('click', function() {
@@ -167,10 +172,19 @@ async function loadAndDisplayModels() {
     } catch (error) {
         console.error('Error fetching models:', error);
     }
+=======
+    
+
 }
 
 init('container3D-1', '/public/free_porsche_911_carrera_4s/');
 init('container3D-2', '/public/ferrari_f1_2019/');
+
 init('container3D-3', '/public/snake_dragon/');
 init('container3D-4', '/public/cool_computer/');
 init('container3D-5', '/public/la_night_city/');
+=======
+init('container3D-3', '/public/snake_dragon/')
+init('container3D-4', '/public/cool_computer/')
+init('container3D-5', '/public/la_night_city/')
+
