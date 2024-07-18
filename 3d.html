@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>3D Viewer</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Jersey+10&family=Jersey+20+Charted&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="3d.css">
-
     <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
-
     <script type="importmap">
         {
-          "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
-          }
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+            }
         }
     </script>
-      
 </head>
 <body>
     <header>
@@ -28,59 +25,95 @@
             <button id="search-button">Search</button>
         </div>
         <div id="profile">
-            <img src="profile-pic.jpg" alt="Profile Picture" id="profile-pic">
-            <h2 id="username">Username</h2>
-            <p id="user-bio">User bio goes here.</p>
+            <img src="" alt="Profile Picture" id="profile-pic">
+            <h2 id="username" class="username-hover">Username</h2>
         </div>
     </header>
-    
     <main>
+        <!-- content od maina-->
+        <form id="upload-form">
+            <input type="file" id="model-file" accept=".gltf, .glb" style="display: none;">
+            <button type="button" id="choose-file-button">Upload Model</button>
+        </form>
+        <br>
         <div id="models-gallery">
-            <form id="upload-form">
-                <input type="text" id="model-name" placeholder="Model Name">
-                <input type="text" id="model-description" placeholder="Model Description">
-                <input type="file" id="model-file" accept=".gltf, .glb" style="display: none;">
-                <button type="button" id="choose-file-button">Upload Model</button>
-            </form>
-
-            <div class="post">
+            <div class="post" id="post1">
                 <div class="model-container" id="container3D-1"></div>
                 <div class="post-content">
                     <h3>Model Title 1</h3>
                     <p>Model description goes here.</p>
+                    <form class="comment-form">
+                        <input type="hidden" class="model-id" value="1">
+                        <input type="text" class="comment-input" placeholder="Your comment...">
+                        <button type="button" class="submit-comment">Submit</button>
+                    </form>
                 </div>
             </div>
-            <div class="post">
+            <div class="post" id="post2">
                 <div class="model-container" id="container3D-2"></div>
                 <div class="post-content">
                     <h3>Model Title 2</h3>
                     <p>Model description goes here.</p>
+                    <form class="comment-form">
+                        <input type="hidden" class="model-id" value="2">
+                        <input type="text" class="comment-input" placeholder="Your comment...">
+                        <button type="button" class="submit-comment">Submit</button>
+                    </form>
                 </div>
             </div>
-            <div class="post">
+            <div class="post" id="post3">
                 <div class="model-container" id="container3D-3"></div>
                 <div class="post-content">
                     <h3>Model Title 3</h3>
                     <p>Model description goes here.</p>
+                    <form class="comment-form">
+                        <input type="hidden" class="model-id" value="3">
+                        <input type="text" class="comment-input" placeholder="Your comment...">
+                        <button type="button" class="submit-comment">Submit</button>
+                    </form>
                 </div>
             </div>
-            <div class="post">
+            <div class="post" id="post4">
                 <div class="model-container" id="container3D-4"></div>
                 <div class="post-content">
                     <h3>Model Title 4</h3>
                     <p>Model description goes here.</p>
+                    <form class="comment-form">
+                        <input type="hidden" class="model-id" value="4">
+                        <input type="text" class="comment-input" placeholder="Your comment...">
+                        <button type="button" class="submit-comment">Submit</button>
+                    </form>
                 </div>
             </div>
-            <div class="post">
+            <div class="post" id="post5">
                 <div class="model-container" id="container3D-5"></div>
                 <div class="post-content">
                     <h3>Model Title 5</h3>
                     <p>Model description goes here.</p>
+                    <form class="comment-form">
+                        <input type="hidden" class="model-id" value="5">
+                        <input type="text" class="comment-input" placeholder="Your comment...">
+                        <button type="button" class="submit-comment">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
     </main>
     <script type="module" src="3d.js"></script>
-
+    <script>
+        const loggedInUsername = localStorage.getItem('loggedInUser');
+        if (loggedInUsername) {
+            const usersData = JSON.parse(localStorage.getItem('usersData')) || [];
+            const user = usersData.find(user => user.username === loggedInUsername);
+            if (user) {
+                document.getElementById('username').textContent = user.username;
+                if (user.profilePicture) {
+                    document.getElementById('profile-pic').src = user.profilePicture;
+                }
+            }
+        } else {
+            document.getElementById('username').textContent = 'Guest';
+        }
+    </script>
 </body>
 </html>
