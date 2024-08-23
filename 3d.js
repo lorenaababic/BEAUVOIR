@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// Event listeners for UI interactions
+
 document.getElementById('choose-file-button').addEventListener('click', () => {
     document.getElementById('model-file').click();
 });
@@ -15,7 +15,7 @@ document.getElementById('model-file').addEventListener('change', async (event) =
         const modelPost = await uploadAndDisplayModel(file);
         document.getElementById('models-gallery').appendChild(modelPost);
 
-        // Save model URL to localStorage for account.html
+     
         const reader = new FileReader();
         reader.onload = function(e) {
             const modelURL = e.target.result;
@@ -27,7 +27,7 @@ document.getElementById('model-file').addEventListener('change', async (event) =
     }
 });
 
-// Function to handle model upload and display
+
 async function uploadAndDisplayModel(file) {
     const formData = new FormData();
     formData.append('name', 'Custom Model');
@@ -53,7 +53,7 @@ async function uploadAndDisplayModel(file) {
     }
 }
 
-// Function to create a model post element
+
 function createModelPost(modelData) {
     const modelPost = document.createElement('div');
     modelPost.classList.add('post');
@@ -71,7 +71,7 @@ function createModelPost(modelData) {
     return modelPost;
 }
 
-// Function to initialize and render a 3D model in a container
+
 function init(containerId, modelPath) {
     const container = document.getElementById(containerId);
 
@@ -148,12 +148,11 @@ function init(containerId, modelPath) {
 
 }
 
-// Event listener for username click
+
 document.getElementById('username').addEventListener('click', function() {
     window.location.href = 'account.html';
 });
 
-// Function to handle DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', async function() {
     const username = localStorage.getItem('loggedInUser');
     const logoutButton = document.getElementById('logout-button');
@@ -163,21 +162,21 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (profilePicture) {
             document.getElementById('profile-pic').src = profilePicture;
         }
-        logoutButton.style.display = 'block'; // Ensure the logout button is visible
+        logoutButton.style.display = 'block'; 
         await loadAndDisplayModels();
     } else {
         document.getElementById('username').textContent = 'Guest';
-        logoutButton.style.display = 'none'; // Ensure the logout button is hidden
+        logoutButton.style.display = 'none'; 
     }
 });
 
-// Function to handle logout
+
 document.getElementById('logout-button').addEventListener('click', function() {
     localStorage.removeItem('loggedInUser');
     window.location.href = '3d_guest.html';
 });
 
-// Function to load and display models from the server
+
 async function loadAndDisplayModels() {
     try {
         const response = await fetch('/fetch-models');
@@ -198,7 +197,7 @@ async function loadAndDisplayModels() {
 
 }
 
-// Initialize the 3D models in their respective containers
+
 init('container3D-1', '/public/free_porsche_911_carrera_4s/');
 init('container3D-2', '/public/ferrari_f1_2019/');
 

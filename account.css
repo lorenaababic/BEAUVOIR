@@ -24,41 +24,41 @@ header h1 {
 #profile-info {
   text-align: center;
   margin-top: 30px;
-  border: 4px solid #586366; /* Dodajte okvir oko profila */
-  background-color: #ccc; /* Promijenite pozadinu profila */
-  padding: 50px 80px; /* Dodajte malo razmaka unutar profila */
-  border-radius: 20px; /* Zaobljeni rubovi */
+  border: 4px solid #586366; 
+  background-color: #ccc;
+  padding: 50px 80px; 
+  border-radius: 20px; 
 }
 
 #profile-pic {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-top: 7px; /* Malo smanjite razmak iznad slike */
+  margin-top: 7px; 
   margin-bottom: 10px;
 }
 
 #change-profile-btn {
   display: block;
-  padding: 4px 4px; /* Povećajte veličinu gumba */
-  /*margin: 10px auto; *//* Centrirajte gumb */
+  padding: 4px 4px;
+  /*margin: 10px auto; */
   margin-top: 0;
   margin-bottom: 15;
   font-size: 11px;
 }
 
 #full-name {
-  font-size: 30px; /* Povećajte veličinu fonta za ime */
+  font-size: 30px; 
   color: #333;
-  margin-top: 15px; /* Dodajte malo razmaka iznad imena */
-  margin-bottom: 5px; /* Smanjite razmak ispod imena */
+  margin-top: 15px; 
+  margin-bottom: 5px;
 }
 
 #username {
   font-size: 25px;
   color: #333;
-  margin-top: 0; /* Dodajte malo razmaka iznad korisničkog imena */
-  margin-bottom: 10px; /* Dodajte razmak ispod korisničkog imena */
+  margin-top: 0; 
+  margin-bottom: 10px; 
 }
 
 main {
@@ -69,9 +69,7 @@ main {
   padding: 20px;
 }
 
-#model-viewer {
-  /* Stilizirajte prostor za prikaz 3D modela prema vašim potrebama */
-}
+
 
 #model-history {
   margin-top: 20px;
