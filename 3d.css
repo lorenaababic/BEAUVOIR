@@ -42,11 +42,30 @@ header h1 {
   cursor: pointer;
 }
 
+#logout-button {
+  font-size: 10px; /* Manja veličina fonta za dugme */
+  padding: 3px 8px; /* Manji razmak unutar dugmeta */
+  margin-top: 1px; /* Razmak od korisničkog imena */
+  margin-left: 15px; /* Razmak od desne ivice */
+  margin-right: 15px;
+  cursor: pointer; /* Indikator da je dugme klikabilno */
+  border: none; /* Uklanjanje ivice dugmeta */
+  background-color: #555; /* Tamnija pozadina za dugme */
+  color: #fff; /* Bele boje teksta */
+  border-radius: 5px; /*Zaobljeni uglovi dugmeta*/ 
+}
+
+#logout-button:hover {
+  background-color: #777; /* Svetlija pozadina pri prelazu miša */
+  text-decoration: underline;
+}
+
 #profile {
   position: absolute;
   top: 10px;
   right: 25px;
   text-align: center; 
+  display: block;
 }
 
 #profile-pic {
@@ -80,6 +99,7 @@ main {
 }
 
 #upload-form {
+  display: block;
   margin-bottom: 20px;
   text-align: center;
 }

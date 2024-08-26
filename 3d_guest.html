@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Viewer</title>
+    <title>3D Viewer (Guest)</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Jersey+10&family=Jersey+20+Charted&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="3d.css">
@@ -25,28 +25,22 @@
             <button id="search-button">Search</button>
         </div>
         <div id="profile">
-            <img src="" alt="Profile Picture" id="profile-pic">
-            <h2 id="username" class="username-hover">Username</h2>
-            <button id="logout-button" style="display: none;">Log out</button>
+            <img src="" alt="Profile Picture" id="profile-pic" style="display:none;">
+            <h2 id="username" class="username-hover">Guest</h2>
+            <div id="guest-auth-links">
+                <a href="login.html" class="auth-link">Log in</a>
+                <a href="signup.html" class="auth-link">Sign up</a>
+            </div>
         </div>
     </header>
     <main>
-        <form id="upload-form">
-            <input type="file" id="model-file" accept=".gltf, .glb" style="display: none;">
-            <button type="button" id="choose-file-button">Upload Model</button>
-        </form>
-        <br>
         <div id="models-gallery">
+            <!-- Prikaz modela -->
             <div class="post" id="post1">
                 <div class="model-container" id="container3D-1"></div>
                 <div class="post-content">
                     <h3>Model Title 1</h3>
                     <p>Model description goes here.</p>
-                    <form class="comment-form">
-                        <input type="hidden" class="model-id" value="1">
-                        <input type="text" class="comment-input" placeholder="Your comment...">
-                        <button type="button" class="submit-comment">Submit</button>
-                    </form>
                 </div>
             </div>
             <div class="post" id="post2">
@@ -54,11 +48,6 @@
                 <div class="post-content">
                     <h3>Model Title 2</h3>
                     <p>Model description goes here.</p>
-                    <form class="comment-form">
-                        <input type="hidden" class="model-id" value="2">
-                        <input type="text" class="comment-input" placeholder="Your comment...">
-                        <button type="button" class="submit-comment">Submit</button>
-                    </form>
                 </div>
             </div>
             <div class="post" id="post3">
@@ -66,11 +55,6 @@
                 <div class="post-content">
                     <h3>Model Title 3</h3>
                     <p>Model description goes here.</p>
-                    <form class="comment-form">
-                        <input type="hidden" class="model-id" value="3">
-                        <input type="text" class="comment-input" placeholder="Your comment...">
-                        <button type="button" class="submit-comment">Submit</button>
-                    </form>
                 </div>
             </div>
             <div class="post" id="post4">
@@ -78,11 +62,6 @@
                 <div class="post-content">
                     <h3>Model Title 4</h3>
                     <p>Model description goes here.</p>
-                    <form class="comment-form">
-                        <input type="hidden" class="model-id" value="4">
-                        <input type="text" class="comment-input" placeholder="Your comment...">
-                        <button type="button" class="submit-comment">Submit</button>
-                    </form>
                 </div>
             </div>
             <div class="post" id="post5">
@@ -90,15 +69,13 @@
                 <div class="post-content">
                     <h3>Model Title 5</h3>
                     <p>Model description goes here.</p>
-                    <form class="comment-form">
-                        <input type="hidden" class="model-id" value="5">
-                        <input type="text" class="comment-input" placeholder="Your comment...">
-                        <button type="button" class="submit-comment">Submit</button>
-                    </form>
                 </div>
             </div>
         </div>
     </main>
-    <script type="module" src="3d.js"></script>
+    <footer>
+        <a href="index.html" id="back-to-home">Back to Home</a>
+    </footer>
+    <script type="module" src="3d_guest.js"></script>
 </body>
 </html>

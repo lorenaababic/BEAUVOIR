@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+// Event listeners for UI interactions
 document.getElementById('choose-file-button').addEventListener('click', () => {
     document.getElementById('model-file').click();
 });
@@ -13,10 +14,20 @@ document.getElementById('model-file').addEventListener('change', async (event) =
     if (file) {
         const modelPost = await uploadAndDisplayModel(file);
         document.getElementById('models-gallery').appendChild(modelPost);
+
+        // Save model URL to localStorage for account.html
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const modelURL = e.target.result;
+            let modelHistory = JSON.parse(localStorage.getItem('modelHistory')) || [];
+            modelHistory.push({ name: file.name, url: modelURL });
+            localStorage.setItem('modelHistory', JSON.stringify(modelHistory));
+        };
+        reader.readAsDataURL(file);
     }
-    
 });
 
+// Function to handle model upload and display
 async function uploadAndDisplayModel(file) {
     const formData = new FormData();
     formData.append('name', 'Custom Model');
@@ -42,6 +53,7 @@ async function uploadAndDisplayModel(file) {
     }
 }
 
+// Function to create a model post element
 function createModelPost(modelData) {
     const modelPost = document.createElement('div');
     modelPost.classList.add('post');
@@ -59,10 +71,11 @@ function createModelPost(modelData) {
     return modelPost;
 }
 
+// Function to initialize and render a 3D model in a container
 function init(containerId, modelPath) {
     const container = document.getElementById(containerId);
-=======
-    const container = document.getElementById(containerId); 
+
+
 
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -135,27 +148,36 @@ function init(containerId, modelPath) {
 
 }
 
+// Event listener for username click
 document.getElementById('username').addEventListener('click', function() {
     window.location.href = 'account.html';
 });
 
+// Function to handle DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', async function() {
     const username = localStorage.getItem('loggedInUser');
+    const logoutButton = document.getElementById('logout-button');
     if (username) {
         document.getElementById('username').textContent = username;
         const profilePicture = localStorage.getItem(`profilePicture_${username}`);
         if (profilePicture) {
             document.getElementById('profile-pic').src = profilePicture;
         }
+        logoutButton.style.display = 'block'; // Ensure the logout button is visible
+        await loadAndDisplayModels();
     } else {
         document.getElementById('username').textContent = 'Guest';
-    }
-
-    if (username) {
-        await loadAndDisplayModels();
+        logoutButton.style.display = 'none'; // Ensure the logout button is hidden
     }
 });
 
+// Function to handle logout
+document.getElementById('logout-button').addEventListener('click', function() {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = '3d_guest.html';
+});
+
+// Function to load and display models from the server
 async function loadAndDisplayModels() {
     try {
         const response = await fetch('/fetch-models');
@@ -172,19 +194,15 @@ async function loadAndDisplayModels() {
     } catch (error) {
         console.error('Error fetching models:', error);
     }
-=======
-    
+
 
 }
 
+// Initialize the 3D models in their respective containers
 init('container3D-1', '/public/free_porsche_911_carrera_4s/');
 init('container3D-2', '/public/ferrari_f1_2019/');
 
 init('container3D-3', '/public/snake_dragon/');
 init('container3D-4', '/public/cool_computer/');
 init('container3D-5', '/public/la_night_city/');
-=======
-init('container3D-3', '/public/snake_dragon/')
-init('container3D-4', '/public/cool_computer/')
-init('container3D-5', '/public/la_night_city/')
 
