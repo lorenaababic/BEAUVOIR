@@ -43,20 +43,20 @@ header h1 {
 }
 
 #logout-button {
-  font-size: 10px; /* Manja veličina fonta za dugme */
-  padding: 3px 8px; /* Manji razmak unutar dugmeta */
-  margin-top: 1px; /* Razmak od korisničkog imena */
-  margin-left: 15px; /* Razmak od desne ivice */
+  font-size: 10px; 
+  padding: 3px 8px; 
+  margin-top: 1px; 
+  margin-left: 15px; 
   margin-right: 15px;
-  cursor: pointer; /* Indikator da je dugme klikabilno */
-  border: none; /* Uklanjanje ivice dugmeta */
-  background-color: #555; /* Tamnija pozadina za dugme */
-  color: #fff; /* Bele boje teksta */
-  border-radius: 5px; /*Zaobljeni uglovi dugmeta*/ 
+  cursor: pointer; 
+  border: none; 
+  background-color: #555; 
+  color: #fff; 
+  border-radius: 5px; 
 }
 
 #logout-button:hover {
-  background-color: #777; /* Svetlija pozadina pri prelazu miša */
+  background-color: #777; 
   text-decoration: underline;
 }
 
