@@ -21,7 +21,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
                 lastName: lastName,
                 username: username,
                 password: password,
-                profilePicture: ''  // Početno prazan profilni avatar
+                profilePicture: ''  
             };
 
             storedUsers.push(userData);

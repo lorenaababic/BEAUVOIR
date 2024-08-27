@@ -10,20 +10,27 @@
     <title>BEAUVOIR</title>
     <nav class="navbar">
         <div class="auth-links">
-        <a href="login.html" class="auth">Log in</a>
-        <a href="signup.html" class="auth">Sign up</a>
-        <a href="#" class="auth">Continue as guest</a>
+            <a href="login.html" class="auth">Log in</a>
+            <a href="signup.html" class="auth">Sign up</a>
+            <a href="#" class="auth" id="continue-as-guest">Continue as guest</a>
         </div>
     </nav>
 </head>
 <body>
     <video autoplay muted loop id="animation">
         <source src="animation.mp4" type="video/mp4">
-        Your browser does not support html 5 video
+        Your browser does not support HTML5 video.
     </video>
   
     <h1>BEAUVOIR</h1>
-    <h2>Application for sharing 3d models</h2>
+    <h2>Application for sharing 3D models</h2>
 
+    <script>
+        document.getElementById('continue-as-guest').addEventListener('click', function(event) {
+            event.preventDefault();
+            localStorage.setItem('guestUser', true);
+            window.location.href = '3d_guest.html';
+        });
+    </script>
 </body>
 </html>

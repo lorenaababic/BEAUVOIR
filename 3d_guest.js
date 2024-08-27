@@ -2,81 +2,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-
-document.getElementById('choose-file-button').addEventListener('click', () => {
-    document.getElementById('model-file').click();
-});
-
-
-document.getElementById('model-file').addEventListener('change', async (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-        const modelPost = await uploadAndDisplayModel(file);
-        document.getElementById('models-gallery').appendChild(modelPost);
-
-     
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const modelURL = e.target.result;
-            let modelHistory = JSON.parse(localStorage.getItem('modelHistory')) || [];
-            modelHistory.push({ name: file.name, url: modelURL });
-            localStorage.setItem('modelHistory', JSON.stringify(modelHistory));
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-
-async function uploadAndDisplayModel(file) {
-    const formData = new FormData();
-    formData.append('name', 'Custom Model');
-    formData.append('description', 'Custom Model Description');
-    formData.append('file', file);
-
-    try {
-        const response = await fetch('/upload-model', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (response.ok) {
-            const modelData = await response.json();
-            return createModelPost(modelData);
-        } else {
-            console.error('Error uploading model:', response.statusText);
-            return null;
-        }
-    } catch (error) {
-        console.error('Error uploading model:', error);
-        return null;
-    }
-}
-
-
-function createModelPost(modelData) {
-    const modelPost = document.createElement('div');
-    modelPost.classList.add('post');
-
-    const modelContainer = document.createElement('div');
-    modelContainer.classList.add('model-container');
-    modelContainer.innerHTML = '<img src="' + modelData.thumbnailUrl + '" alt="' + modelData.name + '">';
-    modelPost.appendChild(modelContainer);
-
-    const postContent = document.createElement('div');
-    postContent.classList.add('post-content');
-    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>';
-    modelPost.appendChild(postContent);
-
-    return modelPost;
-}
-
-
 function init(containerId, modelPath) {
     const container = document.getElementById(containerId);
-
-
-
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -145,37 +72,11 @@ function init(containerId, modelPath) {
 
     animate();
     onResize();
-
 }
 
-
-document.getElementById('username').addEventListener('click', function() {
-    window.location.href = 'account.html';
-});
-
 document.addEventListener('DOMContentLoaded', async function() {
-    const username = localStorage.getItem('loggedInUser');
-    const logoutButton = document.getElementById('logout-button');
-    if (username) {
-        document.getElementById('username').textContent = username;
-        const profilePicture = localStorage.getItem(`profilePicture_${username}`);
-        if (profilePicture) {
-            document.getElementById('profile-pic').src = profilePicture;
-        }
-        logoutButton.style.display = 'block'; 
-        await loadAndDisplayModels();
-    } else {
-        document.getElementById('username').textContent = 'Guest';
-        logoutButton.style.display = 'none'; 
-    }
+    await loadAndDisplayModels();
 });
-
-
-document.getElementById('logout-button').addEventListener('click', function() {
-    localStorage.removeItem('loggedInUser');
-    window.location.href = '3d_guest.html';
-});
-
 
 async function loadAndDisplayModels() {
     try {
@@ -193,15 +94,27 @@ async function loadAndDisplayModels() {
     } catch (error) {
         console.error('Error fetching models:', error);
     }
-
-
 }
 
+function createModelPost(modelData) {
+    const modelPost = document.createElement('div');
+    modelPost.classList.add('post');
+
+    const modelContainer = document.createElement('div');
+    modelContainer.classList.add('model-container');
+    modelContainer.innerHTML = '<img src="' + modelData.thumbnailUrl + '" alt="' + modelData.name + '">';
+    modelPost.appendChild(modelContainer);
+
+    const postContent = document.createElement('div');
+    postContent.classList.add('post-content');
+    postContent.innerHTML = '<h3>' + modelData.name + '</h3><p>' + modelData.description + '</p>';
+    modelPost.appendChild(postContent);
+
+    return modelPost;
+}
 
 init('container3D-1', '/public/free_porsche_911_carrera_4s/');
 init('container3D-2', '/public/ferrari_f1_2019/');
-
 init('container3D-3', '/public/snake_dragon/');
 init('container3D-4', '/public/cool_computer/');
 init('container3D-5', '/public/la_night_city/');
-
